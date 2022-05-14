@@ -2,3 +2,4 @@ Package: Psychometric
 Type: Package
 Title: Psychometric Package for Demonstration
 Version: 0.0.1.0
+RoxygenNote: 7.1.2

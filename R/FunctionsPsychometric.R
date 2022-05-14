@@ -1,63 +1,53 @@
 
-if(!require(devtools)){
-  install.packages("devtools", repos = "http://cran.us.r-project.org")
-}
-library(devtools)
 
-if(!require(roxygen2)){
-  install.packages("roxygen2", repos = "http://cran.us.r-project.org")
-}
-library(roxygen2)
 
 if(!require(ggcorrplot)){
   install.packages("ggcorrplot", repos = "http://cran.us.r-project.org")
 }
-library(ggcorrplot)
+#' @import ggcorrplot
+#library(ggcorrplot)
 
 if(!require(plotrix)){
   install.packages("plotrix", repos = "http://cran.us.r-project.org")
 }
-library(plotrix)
+#' @import plotrix
 
 
 if(!require(learnr)){
   install.packages("learnr", repos = "http://cran.us.r-project.org")
 }
-library(learnr)
+#' @import learnr
 
-if(!require(haven)){
-  install.packages("haven", repos = "http://cran.us.r-project.org")
-  library(haven)
-}
+
 if(!require(readr)){
   install.packages("readr", repos = "http://cran.us.r-project.org")
 }
-library(readr)
+#' @import readr
 
 if(!require(dplyr)){
   install.packages("dplyr", repos = "http://cran.us.r-project.org")
 }
-library(dplyr)
+#' @import dplyr
 
 if(!require(mice)){
   install.packages("mice", repos = "http://cran.us.r-project.org")
 }
-library(mice)
+#' @importFrom mice mice
 
 if(!require(stringr)){
   install.packages("stringr", repos = "http://cran.us.r-project.org")
 }
-library(stringr)
+#' @import stringr
 
 if(!require(psych)){
   install.packages("psych", repos = "http://cran.us.r-project.org")
 }
-library(psych)
+#' @import psych
 
 if(!require(GPArotation)){
   install.packages("GPArotation", repos = "http://cran.us.r-project.org")
 }
-library(GPArotation)
+#' @import GPArotation
 
 
 
