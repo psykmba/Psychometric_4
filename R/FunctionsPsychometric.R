@@ -10,7 +10,6 @@ if(!require(ggcorrplot)){
 if(!require(plotrix)){
   install.packages("plotrix", repos = "http://cran.us.r-project.org")
 }
-#' @import plotrix
 
 
 if(!require(learnr)){
