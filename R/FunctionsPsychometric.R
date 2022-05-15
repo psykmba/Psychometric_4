@@ -405,7 +405,14 @@ reliabilityTest.Psychometric <- function(object, what = "Alpha")
 }
 
 
-
+#' Summary of Reliability
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param scale which scale
+#' @return A Reliability object that can be used for analyses
+#' @examples 
+#' myPsFrame <- summary(object)
 #' @export
 summary.Reliability <- function(object, scale = NULL)
 {
