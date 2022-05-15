@@ -313,9 +313,10 @@ reliabilityTest <- function(x, ...) {
 #' @param object A Psychometric object
 #' @param what what type of analyses: Alpha, Omega or Parallel
 #' @return A Reliability object that can be used for analyses
+#' @export
+#' 
 #' @examples 
 #' myPsFrame <- reliabilityTest(object)
-#' @export
 reliabilityTest.Psychometric <- function(object, what = "Alpha")
 {
   reslist2 <- NULL
@@ -415,6 +416,7 @@ reliabilityTest.Psychometric <- function(object, what = "Alpha")
 #' @examples 
 #' myPsFrame <- summary(object)
 #' @export
+#' 
 summary.Reliability <- function(object, scale = NULL)
 {
   if (is.null(scale))
