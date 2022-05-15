@@ -426,6 +426,16 @@ summary.Reliability <- function(object, scale = NULL)
   }
 }
 
+#' print the Reliability Object
+#'
+#' @param object  Reliability Object
+#' @param plot kind of print
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' print(object)
 print.Reliability <- function(object, plot = F)
 {
   print(object$PrintRes)
