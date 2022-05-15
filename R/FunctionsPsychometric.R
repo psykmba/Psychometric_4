@@ -15,7 +15,6 @@
 #' myPsFrame <- GetPsychometric(myFrame, c("FirstScale", "SecondScale"), 
 #'                     responseScale = list(c(1,7)))
 #' @export
-
 GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
                             typeSum = "Mean", itemLength = 6,  #item skall ha samma namn som skalan plus tecken
                             reverse = T, idVar = "ID", name = "Psychometric",
@@ -279,8 +278,21 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
 }
 
 
-
-
+#' Getting the Psychometric class
+#'
+#' Makes it simple to do basic psychometrics
+#' @param dataSetNr A dataframe with the items and eventual extra variables
+#' @param scaleNames A vector with the names of the scales 
+#' @param responseScale A list with vectors of response intervalls, either one (if all are the same) or one for each scale
+#' @param typeSum A functions used for summarizing the items to scales
+#' @param itemLength The number of significant characters in items
+#' @param reverse A boolean that sets whether items ending with 'R' should be reversed
+#' @param idVar The name of the case identifier (if none a case number variable called ID will be created)
+#' @return A Psychometric object that can be used for analyses
+#' @examples 
+#' myPsFrame <- GetPsychometricJamovi(myFrame, c("FirstScale", "SecondScale"), 
+#'                     responseScale = list(c(1,7)))
+#' @export
 GetPsychometricJamovi <- function(dataSetNr, scaleNames, responseScale = list(c(1,5)),
                                   typeSum = "Mean", itemLength = 6,
                                   reverse = T, idVar = "ID")
