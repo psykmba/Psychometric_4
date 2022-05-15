@@ -36,6 +36,10 @@ GetPsychometric(
 \item{name}{The name of the object (optional)}
 
 \item{itemDictionary}{a textfile with information about scale, items and sign}
+
+\item{itemList}{a textfile with information about scale, items and sign}
+
+\item{reverseList}{a textfile with information about scale, items and sign}
 }
 \value{
 A Psychometric object that can be used for analyses

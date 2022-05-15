@@ -10,6 +10,8 @@
 #' @param idVar The name of the case identifier (if none a case number variable called ID will be created)
 #' @param name The name of the object (optional)
 #' @param itemDictionary a textfile with information about scale, items and sign
+#' @param itemList a textfile with information about scale, items and sign
+#' @param reverseList a textfile with information about scale, items and sign
 #' @return A Psychometric object that can be used for analyses
 #' @examples 
 #' myPsFrame <- GetPsychometric(myFrame, c("FirstScale", "SecondScale"), 
