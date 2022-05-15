@@ -303,6 +303,14 @@ GetPsychometricJamovi <- function(dataSetNr, scaleNames, responseScale = list(c(
   return(GetPsychometric(data, scaleNames, responsScale, typeSum, itemLength, reverse, idVar))
 }
 
+#' Title
+#'
+#' @param x 
+#' @param ... 
+#'
+#' @return
+#' @export
+#'
 reliabilityTest <- function(x, ...) {
   UseMethod("reliabilityTest", x)
 }
