@@ -13,10 +13,8 @@
 #' @param itemList a textfile with information about scale, items and sign
 #' @param reverseList a textfile with information about scale, items and sign
 #' @return A Psychometric object that can be used for analyses
-#' @examples 
-#' myPsFrame <- GetPsychometric(myFrame, c("FirstScale", "SecondScale"), 
-#'                     responseScale = list(c(1,7)))
 #' @export
+#' 
 GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
                             typeSum = "Mean", itemLength = 6,  #item skall ha samma namn som skalan plus tecken
                             reverse = T, idVar = "ID", name = "Psychometric",
