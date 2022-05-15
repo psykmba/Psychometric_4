@@ -3,3 +3,7 @@ Type: Package
 Title: Psychometric Package for Demonstration
 Version: 0.0.1.0
 RoxygenNote: 7.1.2
+Imports: GPArotation, dplyr,ggcorrplot,psych,readr,mice
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

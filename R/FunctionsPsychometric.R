@@ -1,59 +1,3 @@
-
-
-
-if(!require(ggcorrplot)){
-  install.packages("ggcorrplot", repos = "http://cran.us.r-project.org")
-}
-#' @import ggcorrplot
-#library(ggcorrplot)
-
-if(!require(plotrix)){
-  install.packages("plotrix", repos = "http://cran.us.r-project.org")
-}
-
-
-if(!require(learnr)){
-  install.packages("learnr", repos = "http://cran.us.r-project.org")
-}
-#' @import learnr
-
-
-if(!require(readr)){
-  install.packages("readr", repos = "http://cran.us.r-project.org")
-}
-#' @import readr
-
-if(!require(dplyr)){
-  install.packages("dplyr", repos = "http://cran.us.r-project.org")
-}
-#' @import dplyr
-
-if(!require(mice)){
-  install.packages("mice", repos = "http://cran.us.r-project.org")
-}
-#' @importFrom mice mice
-
-if(!require(stringr)){
-  install.packages("stringr", repos = "http://cran.us.r-project.org")
-}
-#' @import stringr
-
-if(!require(psych)){
-  install.packages("psych", repos = "http://cran.us.r-project.org")
-}
-#' @import psych
-
-if(!require(GPArotation)){
-  install.packages("GPArotation", repos = "http://cran.us.r-project.org")
-}
-#' @import GPArotation
-
-
-
-
-
-
-
 GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
                             typeSum = "Mean", itemLength = 6,  #item skall ha samma namn som skalan plus tecken
                             reverse = T, idVar = "ID", name = "Psychometric",
@@ -65,14 +9,14 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
   if (!is.null(data[[idVar]]))
   {
     IDVar <- data[[idVar]]
-    data <- select(data, -idVar)
+    data <- dplyr::select(data, -idVar)
   }
   else
   {
     IDVar <- as.data.frame(1:nrow(data))
     
   }
-  if (FALSE %in% sapply(scaleNames, FUN = function(x) return(str_length(x) >= itemLength)))
+  if (FALSE %in% sapply(scaleNames, FUN = function(x) return(nchar(x) >= itemLength)))
   {
     print(paste("Error: itemLength = ", itemLength, "is larger than the string length of the shortes scale name"))
     return()
@@ -123,7 +67,7 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
     l <- length(respons) # Number of respons types
     s <- length(scales) # Number of scales
     if (l > 1 && l != s)
-      warning("Respons scale is not 1 and not the same as the number of scales using the first for all",
+      warning("Respons scale is not 1 and not the same as the number of scales using the first for all", 
               immediate. = T)
     if (l == 1 || l != s)
       ret <- rep(respons[1], s)
@@ -166,14 +110,14 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
   {
     signPart <- strtrim(scales, itemLength)
     
-    if (str_length(scales) > itemLength)
+    if (nchar(scales) > itemLength)
     {
       newNames <- NULL
       for (item in 1:ncol(x))
       {
         c <- ""
         iName <- names(x[item])
-        for (s in itemLength+1:str_length(scales))
+        for (s in itemLength+1:nchar(scales))
         {
           
           if (substring(scales, s, s) == substring(iName, s,s))
@@ -197,15 +141,15 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
     signPart <- strtrim(scaleNames, itemLength)
     for(v in names(data))
     {
-      if (str_length(v) > itemLength)
+      if (nchar(v) > itemLength)
       {
         if (substr(v, 1, itemLength) %in% signPart)
         {
           iName <- scaleNames[match(substr(v, 1, itemLength),signPart)]
-          if (str_length(iName) > itemLength)
+          if (nchar(iName) > itemLength)
           {
             c <- ""
-            for (s in itemLength+1:str_length(v))
+            for (s in itemLength+1:nchar(v))
             {
               
               if (substring(v, s, s) == substring(iName, s,s))
@@ -490,8 +434,8 @@ imputeMissing.Psychometric <- function(object, handleMissing = "Listwise", scale
     }
     if (handleMissing == "Impute")
     {
-      imputed <- mice(dataToHandle, m = 1, method = "norm.predict", printFlag = F)
-      return(complete(imputed))
+      imputed <- mice::mice(dataToHandle, m = 1, method = "norm.predict", printFlag = F)
+      return(mice::complete(imputed))
       
     }    
     if (handleMissing == "Mean")
@@ -502,8 +446,8 @@ imputeMissing.Psychometric <- function(object, handleMissing = "Listwise", scale
     }
     if (handleMissing == "Bayesian")
     {
-      imputed <- mice(dataToHandle, m = 1, method = "norm", printFlag = F)
-      return(complete(imputed))
+      imputed <- mice::mice(dataToHandle, m = 1, method = "norm", printFlag = F)
+      return(mice::complete(imputed))
       
     }
     if (handleMissing == "Check")
@@ -554,7 +498,7 @@ getCommand.Psychometric <- function(object, scale = "All", command = "Alpha")
   getAlpha <- function(scale)
   {
     n <- paste(names(object$ScaleItemFrames[[scale]]), collapse = ",")
-    res <- list(paste("alpha(object$OriginalData[cs(", n, ")], check.keys = T,keys=NULL,",
+    res <- list(paste("psych::alpha(object$OriginalData[cs(", n, ")], check.keys = T,keys=NULL,",
                       "cumulative=FALSE, title=NULL, max=10,na.rm = TRUE, ",
                       "n.iter=1,delete=TRUE,use='pairwise',warnings=TRUE,",
                       "n.obs=NULL,impute=NULL)", sep = ""))
@@ -673,8 +617,8 @@ plotScale.Psychometric <- function(object, scale = "All", group = NULL,
         #        boxplot(object$ScaleFrame[[scale]], 
         #                xlab = ifelse(missing(xlab), scale, xlab))
         ggplot2::ggplot(data = object$ScaleFrame[scale], aes_string(y = scale))+
-          geom_boxplot() + 
-          ggtitle(paste("Distribution of ", object$Name))
+          ggplot2::geom_boxplot() + 
+          ggplot2::ggtitle(paste("Distribution of ", object$Name))
       }
     }
     else
@@ -703,9 +647,9 @@ plotScale.Psychometric <- function(object, scale = "All", group = NULL,
             external %in% names(object$OtherVariables))
         {
           d <- cbind(object$ScaleFrame[scale], object$OtherVariables[external])
-          ggplot(data = d, aes_string(x = scale, y = external)) +
-            geom_point(col = "gray") + 
-            ggtitle(paste("Distribution of ", object$Name))
+          ggplot2::ggplot(data = d, aes_string(x = scale, y = external)) +
+            ggplot2::geom_point(col = "gray") + 
+            ggplot2::ggtitle(paste("Distribution of ", object$Name))
         }
         
       }
@@ -761,7 +705,7 @@ summary.Psychometric<-function(x, mean = T, sd = T, SE = T, skew = T, kurtosis =
     if(sd==TRUE)
     {sumx$SD[i]<-sd(as.numeric(y[,i]), na.rm = TRUE)}
     if(SE==TRUE) 
-    {sumx$SE[i]<-std.error(y[,i],na.rm = TRUE)} # need library(plotrix))
+    {sumx$SE[i]<-sd(y[,i])/sqrt(sum(!is.na(y[,i])))} # need library(plotrix))
     if(skew==TRUE)
     {sumx$Skew[i]<-skew(as.numeric(y[,i]), na.rm = TRUE)}
     if(kurtosis==TRUE)
@@ -773,9 +717,6 @@ summary.Psychometric<-function(x, mean = T, sd = T, SE = T, skew = T, kurtosis =
     if(omega==TRUE)
     {omeg<-psych::omega(x$ScaleItemFrames[[i]], plot = plots) 
     sumx$Omega[i]<-as.vector(omeg$omega.tot)}
-    #sumx$Alpha[i]<-omeg$alpha
-    #  if(alpha==TRUE)
-    #  {sumx$Alpha[i]<-omeg$alpha}
     if(n==TRUE)
     {sumx$N[i]<-length(y[,i][!is.na(y[,i])]) }
   }
@@ -867,7 +808,7 @@ handleOutliers.Psychometric <- function(object, method = "Mahalanobis", limit = 
       noMissObject <- object
     scaleCor <- cov(noMissObject$ScaleFrame)
     Outliers <- mahalanobis(noMissObject$ScaleFrame, colMeans(noMissObject$ScaleFrame), scaleCor)
-    object <- filter(noMissObject, Outliers < qchisq(1-limit, length(object$ScaleNames)))
+    object <- dplyr::filter(noMissObject, Outliers < qchisq(1-limit, length(object$ScaleNames)))
     return(object)
   }
   if (method == "SD")
@@ -1068,10 +1009,10 @@ CheckForPsychometric <- function(data, scaleNames, responsScale = list(c(1,5)),
   for(index in 1:length(scaleNames))
   {
     rev <- NULL
-    fr <- select(data, starts_with(substr(scaleNames[index], 1, itemLength)))
+    fr <- dplyr::select(data, dplyr::starts_with(substr(scaleNames[index], 1, itemLength)))
     if (reverse == T)
     {
-      rev <- select(fr, ends_with("R"))
+      rev <- dplyr::select(fr, dplyr::ends_with("R"))
       
     }
     resList <- unlist(sapply(fr, FUN = function(x)
