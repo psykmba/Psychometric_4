@@ -301,12 +301,20 @@ GetPsychometricJamovi <- function(dataSetNr, scaleNames, responseScale = list(c(
   return(GetPsychometric(data, scaleNames, responsScale, typeSum, itemLength, reverse, idVar))
 }
 
-
+#' @export
 reliabilityTest <- function(x, ...) {
   UseMethod("reliabilityTest", x)
 }
 
-
+#' Getting the Psychometric class
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Psychometric object
+#' @param what what type of analyses: Alpha, Omega or Parallel
+#' @return A Reliability object that can be used for analyses
+#' @examples 
+#' myPsFrame <- reliabilityTest(object)
+#' @export
 reliabilityTest.Psychometric <- function(object, what = "Alpha")
 {
   reslist2 <- NULL
@@ -398,8 +406,7 @@ reliabilityTest.Psychometric <- function(object, what = "Alpha")
 
 
 
-
-
+#' @export
 summary.Reliability <- function(object, scale = NULL)
 {
   if (is.null(scale))
