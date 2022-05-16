@@ -1,3 +1,6 @@
+
+
+
 #' Getting the Psychometric class
 #'
 #' Makes it simple to do basic psychometrics
@@ -148,7 +151,7 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
             break
         }
         if (c != "")
-          newNames <-c(newNames, str_remove(names(x[item]),c))
+          newNames <-c(newNames, gsub(c, '', names(x[item])))
         else
           newNames <- c(newNames, names(x[item]))
       }
@@ -180,7 +183,7 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
                 break
             }
             if (c != "")
-              names(data)[names(data) == v] <- str_remove(v,c)
+              names(data)[names(data) == v] <- gsub(c, '', v)
             else
               names(data)[names(data) == v] <- v
             
@@ -247,7 +250,7 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
   {
     d <- NULL
     if (file.exists(itemDictionary))
-      d <- read.delim(itemDictionary, comment.char="#")
+      d <- utils::read.delim(itemDictionary, comment.char="#")
     else
     {
       print("Dictionary file does not exist")

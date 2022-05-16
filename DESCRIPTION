@@ -2,15 +2,14 @@ Package: Psychometric
 Type: Package
 Title: Psychometric Package for Demonstration
 Version: 0.0.1.0
-Imports: GPArotation, dplyr,ggcorrplot,psych,readr,mice
+Imports: GPArotation, dplyr,ggcorrplot,psych,readr,mice, utils
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Authors@R: 
     person("Martin", "Baeckstroem", , "martin.backstrom@psy.lu.se", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
