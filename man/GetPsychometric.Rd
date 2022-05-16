@@ -47,3 +47,7 @@ A Psychometric object that can be used for analyses
 \description{
 Makes it simple to do basic psychometrics
 }
+\examples{
+myFrame <- data.frame()
+myPsFrame <- GetPsychometric(myFrame, c("FirstScale", "SecondScale"), responseScale = list(c(1,7)))
+}
