@@ -283,7 +283,7 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
 
 
 
-
+#' @export
 reliabilityTest <- function(object, what, ...) {
   UseMethod("reliabilityTest", object)
 }
@@ -403,20 +403,12 @@ summary.Reliability <- function(object, scale = NULL)
   }
 }
 
-#' @importFrom base print
-#' Summary of print
-#'
-#' Makes it simple to do basic psychometrics
-#' @param object A Reliability object
-#' @param plot which scale
-#' @return A Reliability object that can be used for analyses
 #' @export
 print.Reliability <- function(object, plot = F)
 {
   print(object$PrintRes)
 }
 
-#' @importFrom base plot
 #' Summary of plot
 #'
 #' Makes it simple to do basic psychometrics
@@ -454,12 +446,6 @@ plot.Reliability <- function(object,  scale = NULL)
   }
 }
 
-#' Summary of imputeMissing
-#'
-#' Makes it simple to do basic psychometrics
-#' @param object A Reliability object
-#' @param ... which scale
-#' @return A Reliability object that can be used for analyses
 #' @export
 imputeMissing <- function(object, ...) {
   UseMethod("imputeMissing", object)
