@@ -403,6 +403,7 @@ summary.Reliability <- function(object, scale = NULL)
   }
 }
 
+#' @importFrom base print
 #' Summary of print
 #'
 #' Makes it simple to do basic psychometrics
@@ -415,6 +416,7 @@ print.Reliability <- function(object, plot = F)
   print(object$PrintRes)
 }
 
+#' @importFrom base plot
 #' Summary of plot
 #'
 #' Makes it simple to do basic psychometrics
@@ -452,10 +454,26 @@ plot.Reliability <- function(object,  scale = NULL)
   }
 }
 
+#' Summary of imputeMissing
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param ... which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 imputeMissing <- function(object, ...) {
   UseMethod("imputeMissing", object)
 }
 
+' Summary of imputeMissing
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param handleMissing A Reliability object
+#' @param scales A Reliability object
+#' @param ... which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 imputeMissing.Psychometric <- function(object, handleMissing = "Listwise", scales = F)
 {
   HandleMissing <- function(dataToHandle)
