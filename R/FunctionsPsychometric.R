@@ -273,7 +273,7 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
   MyObject <- list(ResponseScales = responseScale, ScaleItemFrames = scaleItemFrames, ScaleFrame = scaleFrames, 
                    ScaleNames = scaleNames, OtherVariables = otherVariables, OriginalData = data, 
                    Name = name, ItemDictionary = itemDictionary,
-                   ItemLength = itemLength, ResultList = list(), RCommands = list())
+                   ItemLength = itemLength, ResultList = list(), PrintRes = list(), RCommands = list())
   
   class(MyObject) <- "Psychometric"
   return(MyObject)
