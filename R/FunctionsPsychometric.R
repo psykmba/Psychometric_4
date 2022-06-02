@@ -403,11 +403,25 @@ summary.Reliability <- function(object, scale = NULL)
   }
 }
 
+#' Summary of print
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param plot which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 print.Reliability <- function(object, plot = F)
 {
   print(object$PrintRes)
 }
 
+#' Summary of plot
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param scale which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 plot.Reliability <- function(object,  scale = NULL)
 {
   if (class(object)[1] == "Reliability")
