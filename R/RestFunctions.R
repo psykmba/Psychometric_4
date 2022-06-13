@@ -1,12 +1,4 @@
 
-#' Getting the Psychometric class
-#'
-#' Makes it simple to do basic psychometrics
-#' @param object A Psychometric object
-#' @param what what type of analyses: Alpha, Omega or Parallel
-#' @param ... gh
-#' @return A Reliability object that can be used for analyses
-#' @export
 reliabilityTest <- function(object, what, ...) {
   UseMethod("reliabilityTest", object)
 }
@@ -179,13 +171,6 @@ plot.Reliability <- function(x,  scale = NULL,...)
   }
 }
 
-' Summary of imputeMissing
-#'
-#' Makes it simple to do basic psychometrics
-#' @param object A Reliability object
-#' @param ... which scale
-#' @return A Reliability object that can be used for analyses
-#' @export
 imputeMissing <- function(object, ...) {
   UseMethod("imputeMissing", object)
 }
