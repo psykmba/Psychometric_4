@@ -175,7 +175,7 @@ imputeMissing <- function(object, ...) {
   UseMethod("imputeMissing", object)
 }
 
-' Summary of imputeMissing
+#' Summary of imputeMissing
 #'
 #' Makes it simple to do basic psychometrics
 #' @param object A Reliability object
@@ -255,6 +255,15 @@ getCommand <- function(x, ...) {
   UseMethod("getCommand", x)
 }
 
+#' Summary of getCommandMissing
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param scale A Reliability object
+#' @param command Alpha, Omega 
+#' @param ... which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 getCommand.Psychometric <- function(object, scale = "All", command = "Alpha")
 {
   getAlpha <- function(scale)
@@ -289,6 +298,14 @@ getCommand.Psychometric <- function(object, scale = "All", command = "Alpha")
   
 }
 
+' Summary of getCommandMissing
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param scale  All, Alpha, Omega 
+#' @param ... which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 getCommand.Reliability <- function(object, scale = "All")
 {
   print("Exchange 'object' with your owb object name")
@@ -301,7 +318,15 @@ getCommand.Reliability <- function(object, scale = "All")
 
 
 
-
+#' Summary of split
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param group  All, Alpha, Omega 
+#' @param f  function 
+#' @param ... which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 split.Psychometric <- function(object, group, f,...)
 {
   splitDataFrames <- split(object$OriginalData, object$OriginalData[c(group)])
@@ -330,6 +355,12 @@ getObject <- function(x, ...) {
 }
 
 
+#' Summary of getObject
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @return A Reliability object that can be used for analyses
+#' @export
 getObject.Psychometric <- function(object)
 {
   
