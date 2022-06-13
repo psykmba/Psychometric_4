@@ -388,7 +388,19 @@ print.PsychometricList <- function(object)
     print(obj)
 }
 
-
+#' Summary of plotScale.Psychometric
+#'
+#' Makes it simple to do basic psychometrics
+#' @param object A Reliability object
+#' @param scale A Reliability object
+#' @param external  All, Alpha, Omega 
+#' @param group  All, Alpha, Omega 
+#' @param type  function 
+#' @param main  function 
+#' @param xlab  function 
+#' @param ... which scale
+#' @return A Reliability object that can be used for analyses
+#' @export
 plotScale.Psychometric <- function(object, scale = "All", group = NULL,
                                    external = NULL,
                                    type = "Histogram", main = "", xlab = "", ...)
