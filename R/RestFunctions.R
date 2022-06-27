@@ -663,9 +663,21 @@ names.Psychometric <- function(object)
   return()
 }
 
+getData <- function(x) {
+  UseMethod("getData", x)
+}
+
 getData.Psychometric <- function(object)
 {
-  as.data.frame(cbind(object$ScaleFrame, object$OtherVariables))
+  itemFrames <- NULL
+  for(frame in object$ScaleItemFrames)
+  {
+    if (is.null(itemFrames))
+       itemFrames <- frame
+    else
+       itemFrames <- cbind(itemFrames, frame)
+  }
+  return(as.data.frame(cbind( object$OtherVariables, object$ScaleFrame,itemFrames)))
 }
 
 pHelp <- function(x, ...) {

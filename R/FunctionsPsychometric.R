@@ -233,7 +233,7 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
     res <- NULL
     for (index in 1:length(frames))
     {
-      res <- cbind(res, rowMeans(as.data.frame(frames[index]), na.rm = F))
+      res <- cbind(res, rowMeans(as.data.frame(frames[index]), na.rm = T))
     }
     res <- as.data.frame(res)
     row.names(res) <- 1:nrow(res)
@@ -278,5 +278,4 @@ GetPsychometric <- function(data, scaleNames, responseScale = list(c(1,5)),
   return(MyObject)
   
 }
-                                                                                                                       
 
